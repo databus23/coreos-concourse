@@ -1,0 +1,26 @@
+db:
+  image: postgres:9.5 
+  environment:
+    - POSTGRES_DB=concourse
+web:
+  build: .
+  command: web
+  volumes:
+    - ./secrets:/secrets
+  links:
+    - db:postgres
+  ports:
+    - 8080:8080
+    - 2222:2222
+
+worker:
+  image: concourse_web
+  command: worker
+  privileged: true
+  volumes:
+    - ./secrets:/secrets
+    - /workdir
+  links:
+    - web:concourse
+  ports:
+    - 7777:7777

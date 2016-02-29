@@ -1,0 +1,13 @@
+jobs:
+  - name: test
+    public: true
+    plan:
+      - get: alpine.image 
+        trigger: true
+
+
+resources:
+  - name: alpine.image
+    type: docker-image
+    source:
+      repository: alpine
