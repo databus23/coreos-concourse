@@ -8,4 +8,4 @@ modprobe btrfs
 for i in $(seq 0 63); do
   [ -b /dev/loop$i ] || mknod -m 0660 /dev/loop$i b 7 $i
 done
-#docker-compose -p concourse up -d
+docker-compose -p concourse up -d
