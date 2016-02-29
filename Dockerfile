@@ -9,6 +9,6 @@ RUN curl -f -L --create-dirs -o /usr/local/bin/dumb-init https://github.com/Yelp
 #RUN curl -f -s -L -o /usr/local/bin/concourse https://github.com/concourse/concourse/releases/download/v0.74.0/concourse_linux_amd64 && \
 #    chmod +x /usr/local/bin/concourse
 ADD build/concourse_linux_amd64 /usr/local/bin/concourse
-ADD init.sh /init.sh
-ENTRYPOINT ["/usr/local/bin/dumb-init", "-c", "--", "/init.sh"]
+ADD entrypoint.sh /entrypoint.sh 
+ENTRYPOINT ["/usr/local/bin/dumb-init", "-c", "--", "/entrypoint.sh"]
 CMD ["/bin/bash"]
